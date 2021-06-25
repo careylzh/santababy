@@ -23,14 +23,16 @@ internal gift redemption system
 - ts node allows you to run typescript directly without having to transpile to js. Use during dev
 - can add in nodemon config to watch ts file changes
 - using morgan to log requests
+- linted using eslint on vsc
 
 ## TODO/Areas of Improvement
 
 ### TODO: Backend
 
-- [ ] add the endpoint for user (only endpoint in this project)
+- [x] setup dev env: boilerplate for backend, adding logging, danger rules for commit
+- [x] add the endpoint for user (only endpoint in this project)
 - [ ] add business logic to controller (2 post reqs, should use ORM also)
-- [ ] dockerise server
+- [x] dockerise server
 - [ ] dockerise db schema
 - [ ] deploy on netlify/aws ec2 if there's time
 
