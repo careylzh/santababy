@@ -17,3 +17,4 @@ internal gift redemption system
 - define `"outDir": "./build",` in `tsconfig.json`
 - ts node allows you to run typescript directly without having to transpile to js. Use during dev
 - can add in nodemon config to watch ts file changes
+- using morgan to log requests
