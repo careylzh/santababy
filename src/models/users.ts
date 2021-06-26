@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  UpdateDateColumn,
+  Timestamp,
+} from "typeorm";
 
 @Entity()
 export class Users {
@@ -9,5 +15,5 @@ export class Users {
   team_name!: string;
 
   @Column()
-  createdAt!: Date;
+  created_at!: string;
 }
