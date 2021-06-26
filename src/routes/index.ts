@@ -1,17 +1,11 @@
-/**
- * Subrouter that deals with the routing logic
+/**Routing logic to subrouters
+ * This file is the entry point for subrouters, which call their respective controllers
  */
-
 import express from "express";
-import UserController from "../controllers/user";
+import UserRouter from "./ user.router";
 
 const router = express.Router();
 
-//TODO: verify() should be a post req that sends the staff_pass_id received to check if user is valid
-router.get("/user", async (_req, res) => {
-  const controller = new UserController();
-  const response = await controller.verify();
-  return res.send(response);
-});
+router.use("/users", UserRouter);
 
 export default router;
