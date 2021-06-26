@@ -9,5 +9,5 @@ export class RedeemedTeams {
   redeemed_by!: string; //staff_pass_id
 
   @Column()
-  redeemed_at!: Date; //epoch date
+  redeemed_at!: string; //epoch date
 }
