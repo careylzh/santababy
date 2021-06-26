@@ -36,11 +36,12 @@ internal gift redemption system
 
 - should probably allow administrators to add users to a team, which will change the number of gifts to be redeemed for each team
 - since dataset is pretty large (5000 entries), should do auto counting of number of gifts to be redeemed and map this number of gifts to the respective teams
+- standardise verify endpoint takes in payload with staffPassId instead of staff_pass_id (underscoring convention reserved for col names)
 
 ### TODO: Administrative
 
 - [ ] consolidate setup docs
-- [ ] write api contract for your 2 api methods
+- [ ] write api contract for your 2 api endpoints
 
 ### TODO: Backend
 
@@ -52,7 +53,6 @@ internal gift redemption system
 - [ ] write tests for api
 - [ ] deploy on netlify/aws ec2 (if there's time)
 - [ ] remove unnecessary typescript in docker production (if there's time)
-- [ ] postgres driver pg typeORM for db query abstraction, reflect-metadata for decorator logs support
 - [ ] typeORM for db query abstraction
 - [ ] write script to seed data from csv? Or can just seed locally through psql
 - [ ]
