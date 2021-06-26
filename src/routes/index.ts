@@ -3,9 +3,10 @@
  */
 import express from "express";
 import UserRouter from "./ user.router";
-
+import RedeemedRouter from "./redeemed.router";
 const router = express.Router();
 
 router.use("/users", UserRouter);
+router.use("/redeemed", RedeemedRouter);
 
 export default router;
