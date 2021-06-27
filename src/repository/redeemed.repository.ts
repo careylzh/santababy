@@ -15,7 +15,6 @@ export const addRedeemed = async (
   payload: UserPayload
 ): Promise<RedeemedTeams> => {
   const redeemedRepository = getRepository(RedeemedTeams);
-  console.log(Date.now().toString());
   return redeemedRepository.save({
     team_name: payload.teamName,
     staff_pass_id: payload.staffPassId,

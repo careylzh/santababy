@@ -11,8 +11,6 @@ export const getUser = async (staffPassId: string): Promise<UserPayload> => {
   const userRepository = getRepository(Users);
   const user = await userRepository.findOne({ staff_pass_id: staffPassId });
   if (!user) {
-    //   console.log(staffPassId);
-    //   console.log(user);
     return { validUser: false, staffPassId: "", teamName: "" };
   }
   return {

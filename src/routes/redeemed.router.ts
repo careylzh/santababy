@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get("/checkRedeemed", async (req, res) => {
   const controller = new RedeemedController();
-  //console.log(req);
   const response = await controller.checkRedeemed(req.body); //TODO: response is {boolean} or boolean?
   return res.send(response);
 });
