@@ -8,7 +8,7 @@ import {
 } from "../repository/users.repository";
 
 export default class UserController {
-  public async verify(staff_pass_id: string): Promise<UserPayload | Boolean> {
+  public async verify(staff_pass_id: string): Promise<UserPayload> {
     return getUser(String(staff_pass_id));
   }
   public async getAllUsers(): Promise<Array<Users>> {
