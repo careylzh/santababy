@@ -6,8 +6,8 @@ export class RedeemedTeams {
   team_name!: string;
 
   @Column()
-  staff_pass_id!: string; //staff_pass_id
+  staff_pass_id!: string;
 
   @Column()
-  redeemed_at!: string; //epoch date
+  redeemed_at!: string; //epoch time
 }

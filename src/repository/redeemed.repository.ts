@@ -1,3 +1,4 @@
+//business logic, the querying of the database
 import { getRepository } from "typeorm";
 import { RedeemedTeams } from "../models";
 import { UserPayload } from "./users.repository";

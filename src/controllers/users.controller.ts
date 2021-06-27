@@ -1,3 +1,7 @@
+/**Controllers provided me with a high-lvl abstraction of the methods concerned with a model,
+ * so at a glance I can know the methods involved wihtout having to deal with the business logic.
+ */
+
 import { Users } from "../models";
 
 //import methods interfaces from repo layer, where business logic is

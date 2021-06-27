@@ -1,3 +1,7 @@
+/**This subrouter file:
+ *  - connects your endpoints to the RedeemedController
+ *  - is referenced in this directory's index.ts(main router that defines your endpoints)
+ */
 import express from "express";
 import RedeemedController from "../controllers/redeemed.controller";
 

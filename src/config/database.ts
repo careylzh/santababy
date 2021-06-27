@@ -1,3 +1,5 @@
+//this file creates postgres database with the models Users and RedeemedTeams table models from the models directory
+
 import { ConnectionOptions } from "typeorm";
 import { Users, RedeemedTeams } from "../models";
 const config: ConnectionOptions = {

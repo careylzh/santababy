@@ -15,5 +15,5 @@ export class Users {
   team_name!: string;
 
   @Column()
-  created_at!: string;
+  created_at!: string; //epoch time
 }

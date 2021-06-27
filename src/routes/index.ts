@@ -2,7 +2,7 @@
  * This file is the entry point for subrouters, which call their respective controllers
  */
 import express from "express";
-import UserRouter from "./ user.router";
+import UserRouter from "./ users.router";
 import RedeemedRouter from "./redeemed.router";
 const router = express.Router();
 
