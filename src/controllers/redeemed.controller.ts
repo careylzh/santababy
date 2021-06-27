@@ -5,8 +5,8 @@ import {
   checkRedeemed,
   addRedeemed,
   getAllRedeemedTeams,
-} from "../repository/redeemed";
-import { UserPayload } from "../repository/users";
+} from "../repository/redeemed.repository";
+import { UserPayload } from "../repository/users.repository";
 export default class RedeemedController {
   public async checkRedeemed(payload: UserPayload): Promise<Boolean> {
     return checkRedeemed(payload);

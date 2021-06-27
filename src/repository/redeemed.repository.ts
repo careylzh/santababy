@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
 import { RedeemedTeams } from "../models";
-import { UserPayload } from "./users";
+import { UserPayload } from "./users.repository";
 
 export const checkRedeemed = async (payload: UserPayload): Promise<boolean> => {
   const redeemedRepository = getRepository(RedeemedTeams);
