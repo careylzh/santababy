@@ -1,9 +1,11 @@
 # santababy 🎅👶
-Internal gift redemption system 
+Internal gift redemption system built using jQuery, express, typeORM, postgreSQL
 
 ## Latest Notes
 - Docker is currently configured to run `npm run dev`, which is the development build (direct ts using `ts-node`). If deploying online, remember to use js `npm start` to save transpilation time, by changing `dockerfile:` in `docker-compose.yml`.
-- Frontend currently accepts `staff_pass_id` as a string and submits to the first endpoint `users/verify` to verify whether user is a legitimate member of the organisation. Need to take output from `user/verify` (a json object of the type `UserPayload` defined in `users.repository.ts`) and send to `/redeemed/checkRedeemed`. If checkRedeeemed returns false, call endpoint `/redeemed/addRedeemed` on frontend and display successful redemption, else display "team has redeemed". 
+- Frontend currently accepts `staff_pass_id` as a string. Upon click submit,
+    - `staff_pass_id` is submitted to the first endpoint `users/verify` to verify whether user is a legitimate member of the organisation
+    - after the async function completes, the output(json string with the fields `validUser`, `teamName` and `staffPassId` are passed to `/redeemed/checkRedeemed` via the function `checkedRedeemed()`. If checkRedeemed() returns false, call `addRedeemed()` which does a post req to the endpoint `/redeemed/addRedeemed`, else display "team has redeemed". 
 - the endpoints `/users` is currently set to fetch all 5000 datapoints as  
 - Tested endpoints `users/verify`, `redeemed/checkRedeemed`, `redeemed/addRedeemed` with postman, all functional
 - Should write seeding script so new developers don't need to `docker cp` and then load data into the db using psql
@@ -73,13 +75,19 @@ COPY "users"("staff_pass_id","team_name","created_at") FROM '/data.csv' DELIMITE
 - [x] add the endpoint for user (only endpoint in this project)
 - [x] add business logic to controller (should use ORM also)
 - [x] dockerise server
-- [x] dockerise db schema
-- [ ] write tests for api (just unit test the 2 controllers using fakedata and mock repo layer should be fine)
-- [ ] deploy on netlify/aws ec2 (if there's time)
 - [x] typeORM for db query abstraction
+- [x] dockerise db schema
+- [x] spying unit tests for user controller
+- [ ] unit tests for user controller using faker
+- [ ] unit tests for redeemed controller
+    - *should return false if individual's team has not redeemed*
+    - *should return true if individual's team has redeemed*
+    - *should successfully add to database with correct date in epoch format, stored as a string*
 - [ ] swaggerise project?
 - [ ] convert to production (so runs ts instead of js + no development packages. Edit dockerfile to point to `Dockerfile` instead of `Dockerfile.dev`) (if there's time)
 - [ ] write script to seed data from csv upon docker-compose up? Or can just seed locally `docker cp` and `docker exec -it santababy_db_1 bash` psql?
+- [ ] deploy on netlify/aws ec2 (if there's time)
+
 
 ### TODO: Frontend
 
