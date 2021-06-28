@@ -11,6 +11,7 @@ Internal gift redemption system built using jQuery, express, typeORM, postgreSQL
 - Should write seeding script so new developers don't need to `docker cp` and then load data into the db using psql
 - Db only instantiated inside santababy_db_1 docker container so `npm run dev` outside the container doesn't work
 - api contracts are in the respective controller files
+- swagger has a typo: `checkRedeemed` and `addRedeemed` should take in query parameters `validUser`, `teamName` and `staffPassId` (equivalent to the interface `UserPayload`)
 
 ## Architecture and Technical Decisions
 (Click to zoom in thank you)
@@ -83,7 +84,7 @@ COPY "users"("staff_pass_id","team_name","created_at") FROM '/data.csv' DELIMITE
     - *should return false if individual's team has not redeemed*
     - *should return true if individual's team has redeemed*
     - *should successfully add to database with correct date in epoch format, stored as a string*
-- [ ] swaggerise project?
+- [x] swaggerise project (API docs)
 - [ ] convert to production (so runs ts instead of js + no development packages. Edit dockerfile to point to `Dockerfile` instead of `Dockerfile.dev`) (if there's time)
 - [ ] write script to seed data from csv upon docker-compose up? Or can just seed locally `docker cp` and `docker exec -it santababy_db_1 bash` psql?
 - [ ] deploy on netlify/aws ec2 (if there's time)
