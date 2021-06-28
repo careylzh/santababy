@@ -2,6 +2,7 @@
  * so at a glance I can know the methods involved wihtout having to deal with the business logic.
  */
 
+import { Get, Route, Tags, Path, Request, Query } from "tsoa";
 import { Users } from "../models";
 
 //import methods interfaces from repo layer, where business logic is
@@ -11,10 +12,14 @@ import {
   UserPayload,
 } from "../repository/users.repository";
 
+@Route("/users")
+@Tags("UserPayload")
 export default class UserController {
-  public async verify(staff_pass_id: string): Promise<UserPayload> {
+  @Get("/verify")
+  public async verify(@Query() staff_pass_id: string): Promise<UserPayload> {
     return getUser(String(staff_pass_id));
   }
+  @Get("/")
   public async getAllUsers(): Promise<Array<Users>> {
     return getAllUsers();
   }
