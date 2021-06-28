@@ -4,24 +4,34 @@
  */
 import express from "express";
 import RedeemedController from "../controllers/redeemed.controller";
+import { UserPayload } from "../repository/users.repository";
 
 const router = express.Router();
 
 router.get("/checkRedeemed", async (req, res) => {
   const controller = new RedeemedController();
-  const response = await controller.checkRedeemed(req.body); //TODO: response is {boolean} or boolean?
+  const userPayload: UserPayload = {
+    validUser: Boolean(req.query.validUser),
+    teamName: String(req.query.teamName),
+    staffPassId: String(req.query.staffPassId),
+  };
+  const response = await controller.checkRedeemed(userPayload); //TODO: response is {boolean} or boolean?
   return res.send(response);
 });
 
-router.get("/addRedeemed", async (_req, res) => {
+router.post("/addRedeemed", async (req, res) => {
   const controller = new RedeemedController();
-
-  const response = await controller.addRedeemed(_req.body);
+  const userPayload: UserPayload = {
+    validUser: Boolean(req.query.validUser),
+    teamName: String(req.query.teamName),
+    staffPassId: String(req.query.staffPassId),
+  };
+  console.log(req.query);
+  const response = await controller.addRedeemed(userPayload);
   return res.send(response);
 });
 
-//must get all redeemed teams also if not redeemed route doesnt return anything
-router.get("/", async (_req, res) => {
+router.get("/", async (req, res) => {
   const controller = new RedeemedController();
   const response = await controller.getAllRedeemedTeams();
   return res.send(response);
