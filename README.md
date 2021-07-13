@@ -1,5 +1,5 @@
 # santababy 🎅👶
-Internal gift redemption system built using jQuery, express, typeORM, postgreSQL
+Internal gift redemption system built using jQuery(should have used React), express, typeORM, postgreSQL, docker
 
 ## Latest Notes
 - Docker is currently configured to run `npm run dev`, which is the development build (direct ts using `ts-node`). If deploying online, remember to use js `npm start` to save transpilation time, by changing `dockerfile:` in `docker-compose.yml`.
@@ -63,12 +63,18 @@ COPY "users"("staff_pass_id","team_name","created_at") FROM '/data.csv' DELIMITE
 - since dataset is pretty large (5000 entries), should do auto counting of number of gifts to be redeemed and map this number of gifts to the respective teams
 - standardise verify endpoint takes in payload with staffPassId instead of staff_pass_id (underscoring convention reserved for col names)
 - should probably keep api and frontend repos separate for actual deployment
-- use axios and frontend lib like react to simplify REST api calls. Ajax has been decreasing in popularity for good reasons
+- use axios to simplify REST api calls. Ajax has been decreasing in popularity for good reasons
+- **INVESTIGATE**(urgent bugs that affect functionality. Not reflected in TODO): 
+    - Oversight: The endpoint which creates a redemption record, data is sent inside the post body, but gets the value via the query string -  this creates undefined records in the redeemed_teams table 
+        - Double check `$.post` syntax: https://api.jquery.com/jquery.post/ doesn't specify if data was sent in the request body or query 🤔
+    - The validation to ensure each team can only collect one – **validation failed but the request still passed through**, thus, the old record was overwritten in the DB 🤔🤔🤔
+    - The validation to check whether staff have redeemed doesn’t return any success/failure messages (implement Promise handling like `.fail() .success()`) 
  
-### TODO: Administrative
+### TODO: General
 
 - [x] consolidate setup docs
 - [x] write api contract for your 2 api endpoints
+- [ ] how to organise monorepo with BE and FE directories from my current state(where BE node/docker inited at root directory)?
 
 ### TODO: Backend
 
@@ -91,7 +97,6 @@ COPY "users"("staff_pass_id","team_name","created_at") FROM '/data.csv' DELIMITE
 
 
 ### TODO: Frontend
-
 - [ ] Frontend currently accepts `staff_pass_id` as a string and submits to the first endpoint `users/verify` to verify whether user is a legitimate member of the organisation. Need to take output from `user/verify` and send to `/redeemed/checkRedeemed`. If checkRedeeemed returns false, call endpoint `/redeemed/addRedeemed` on frontend and display successful redemption, else display "team has redeemed". 
 - [ ] Should probably display the member count for each too so they can check how many gifts they need to redeem. Requires api change, possibly a new table?
 
